@@ -231,7 +231,7 @@ def display_main_menu(client):
     if option==6:
         exit_func()
         return 0
-    accountType = raw_input("\n\tSelect an account(checking/saving): ") # source account if option==4
+    accountType = raw_input("\n\tSelect an account(checking/saving): ") 
     os.system('cls')
     account = client._account_reservoir[accountType]
     toAccountType = list(set(["checking","saving"])-set([accountType]))[0]
@@ -269,3 +269,9 @@ def balance_query(account):
     return account.balance_query()
 
 
+def continue_open(accountType,accountOpenOption):
+    new_account_str = list(set(["checking","saving"])-set([accountType]))[0]     # get another account type
+    continueOpen=raw_input("\nDo you want to continue to open a " + new_account_str+" account(Y/N)? ")
+    if continueOpen=='Y':
+        accountOpenOption[new_account_str]()
+        time.sleep(2)
